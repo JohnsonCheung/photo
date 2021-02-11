@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0025)https://www.tcl-lang.org/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"> <title>Tcl Developer Site</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./Tcl Developer Site_files/devsite.css" type="text/css" media="all">
+<style>.vfinder-info a,
+.vfinder-info div  {
+    color: #dedede;
+}
+.vfinder-info *,
+.vfinder-code *
+{
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    background: transparent;
+}
+.vfinder-info > div {
+    padding: 4px 12px;
+}
+.vfinder-info > div:hover{
+    background: rgba(140, 140, 140, 0.36);
+}
+.vfinder-info {
+    position: fixed;
+    border-radius: 4px;
+    padding: 5px 0;
+    background: rgba(64, 64, 64, 0.9);
+
+/*    padding: 10px 18px;*/
+    z-index: 9999999;
+    border: 1px solid rgb(143, 143, 143);
+    font-size: 13px;
+}
+.vfinder-info:after{
+    position: absolute;
+    content: " ";
+    width: 10px;
+    height: 10px;
+    -webkit-transform: rotate(45deg);
+    background: rgba(64, 64, 64, 0.9);
+    left: -5px;
+    top: 50%;
+    margin-top: -5px;
+}
+.vfinder-info-name-template{
+    color: #ff7474;
+}
+.vfinder-info-name-style{
+    color: #17ceff;
+}
+.vfinder-info-name-script{
+    color: #f281ff;
+}
+.vfinder-info-name-created{
+    color: #40c22a;
+}
+.vfinder-info-name-template,
+.vfinder-info-name-style,
+.vfinder-info-name-script,
+.vfinder-info-name-created{
+    display: inline-block;
+    width: 75px;
+}
+.vfinder-mask {
+    position: fixed;
+    z-index: 9999998;
+    background-color: rgba(1, 165, 255, 0.2);
+    pointer-events: none;
+}
+.vfinder-code{
+    position: fixed;
+/*    padding: 10px;*/
+/*    background: rgba(254, 255, 221, 0.9);*/
+    background: rgba(64, 64, 64, 0.9);
+    max-width: 400px;
+    font-size: 10px;
+    z-index: 10000000;
+    word-wrap: break-word;
+    border-radius: 4px;
+/*    color: #747474;*/
+    color: #dedede;
+    border: 1px solid rgba(222, 222, 222, 0.34);
+}
+.vfinder-path::-webkit-scrollbar,
+.vfinder-code-content::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+.vfinder-path::-webkit-scrollbar-thumb,
+.vfinder-code-content::-webkit-scrollbar-thumb {
+  background: rgba(103, 103, 103, 0.9);
+  border-radius: 4px;
+}
+.vfinder-path::-webkit-scrollbar-track,
+.vfinder-code-content::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+
+.vfinder-code-content{
+    padding: 0 10px;
+    overflow: auto;
+    max-height: 260px;
+}
+.vfinder-code-content p {
+    padding: 2px 6px 2px 0;
+}
+.vfinder-code-content > pre {
+    float: left;
+    clear: left;
+    white-space: nowrap;
+}
+.vfinder-current-code-line{
+    background: rgba(234, 102, 223, 0.25);
+    border-radius: 2px;
+}
+.vfinder-path{
+    padding: 10px;
+    border-bottom: 1px solid rgba(222, 222, 222, 0.34);
+    background: rgba(140, 140, 140, 0.36);
+    white-space:nowrap;
+    overflow-x: auto;
+}
+.vfinder-line-count{
+    color: #dedede;
+    min-width: 25px;
+    display: inline-block;
+}
+
+
+</style><style>/*
+  IR_Black style (c) Vasily Mikhailitchenko <vaskas@programica.ru>
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #000;
+  color: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #7c7c7c;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-tag,
+.hljs-name {
+  color: #96cbfe;
+}
+
+.hljs-attribute,
+.hljs-selector-id {
+  color: #ffffb6;
+}
+
+.hljs-string,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition {
+  color: #a8ff60;
+}
+
+.hljs-subst {
+  color: #daefa3;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #e9c062;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-doctag {
+  color: #ffffb6;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-literal {
+  color: #c6c5fe;
+}
+
+.hljs-number,
+.hljs-deletion {
+  color:#ff73fd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</style></head>
+<body bgcolor="white" text="black">
+<table border="0" cellpadding="0" cellspacing="0" width="780">
+<tbody><tr>
+<td valign="top" align="left"><a href="https://www.tcl-lang.org/"><img src="./Tcl Developer Site_files/plume.png" width="60" height="55" border="0" alt="Tcl Home"><img src="./Tcl Developer Site_files/Developer.gif" width="355" height="55" border="0" alt="Tcl Home" title="Tcl Developer Xchange"></a></td>
+<td valign="top" align="right"><a href="https://www.tcl-lang.org/siteinfo.html"><font size="1">Hosted by</font></a><br><a href="http://www.activestate.com/products/tcl"><img src="./Tcl Developer Site_files/aslogo.gif" border="0" alt="ActiveState" title="This site is hosted by ActiveState"></a></td>
+</tr>
+</tbody></table>
+<div id="globalnav"><ul>
+<li><a href="https://www.tcl-lang.org/" class="here">HOME</a></li>
+<li><a href="https://www.tcl-lang.org/about/">ABOUT TCL/TK</a></li>
+<li><a href="https://www.tcl-lang.org/software/tcltk/">SOFTWARE</a></li>
+<li><a href="https://www.tcl-lang.org/community/coreteam/">CORE DEVELOPMENT</a></li>
+<li><a href="https://www.tcl-lang.org/community/">COMMUNITY</a></li>
+<li><a href="https://www.tcl-lang.org/doc/">DOCUMENTATION</a></li>
+</ul></div>
+<br clear="all">
+<div style="border-top: 2px solid #3163CE; width: 780px"></div>
+<table border="0" cellpadding="0" cellspacing="0" width="780">
+<tbody><tr><td>
+
+
+<div style="display:table-cell; vertical-align:middle; margin:0px">
+<form method="GET" action="https://www.google.com/search">
+<a href="https://www.google.com/"><img src="./Tcl Developer Site_files/Search.gif" border="0" alt="Google SiteSearch"></a>
+<input type="text" name="q" size="20" maxlength="255" value="">
+<input type="image" value="submit" name="btnG" src="./Tcl Developer Site_files/Go.gif">
+<input type="hidden" name="ie" value="UTF-8">
+<input type="hidden" name="oe" value="UTF-8">
+<input type="hidden" name="domains" value="tcl.tk">
+<input type="hidden" name="sitesearch" value="tcl.tk">
+</form></div>
+
+<div class="sidefloat">
+<div class="sidebox">
+<h4>Tcl Conference News</h4>
+<p>
+The <a href="https://www.tcl-lang.org/community/tcl2020">27<sup>th</sup> Tcl/Tk Conference</a>
+was held Nov 10, 2020 as a virtual event, due to COVID-19.
+</p><p>
+The <a href="http://www.eurotcl.eu/">
+<b>18<sup>th</sup> European Tcl/Tk User Meeting</b></a>
+was canceled due to COVID-19.
+
+
+</p><p>
+<a href="https://www.tcl-lang.org/community/conferences.html"> Older conference info </a>
+</p>
+</div>
+<div class="sidebox">
+<h4>Latest Software Releases</h4>
+<p>
+<b><a href="https://www.tcl-lang.org/software/tcltk/8.6.html">Tcl/Tk 8.6.11</a></b> <i>Source</i>
+<br>
+<b><a href="https://www.tcl-lang.org/software/tcltk/8.7.html">Tcl/Tk 8.7a3</a></b> <i>Pre-release</i>
+<br>
+<a href="https://www.tcl-lang.org/software/tcltk/download.html"> All Tcl/Tk Downloads </a>
+</p><p>
+<b><a href="https://www.activestate.com/activetcl">ActiveTcl</a></b> <i>Multi-platform</i>
+<br>
+<b><a href="http://www.bawt.tcl3d.org/">BAWT</a></b> <i>Multi-platform</i>
+<br>
+<b><a href="http://www.magicsplat.com/tcl-installer/index.html">Magicsplat</a></b> <i>Windows</i>
+<br>
+<b><a href="https://www.irontcl.com/">IronTcl</a></b> <i>Windows</i>
+<br>
+</p><p>
+<b><a href="https://www.tcl.tk/software/tklib/">Tklib 0.7</a></b> <i>Feb 9, 2020</i>
+<br>
+<b><a href="https://www.tcl.tk/software/tcllib/">Tcllib 1.20</a></b> <i>Dec 2, 2019</i>
+<br>
+</p><p>
+<a href="https://wiki.tcl.tk/9356"> Wiki Category: Distributions </a>
+</p></div>
+</div>
+<h2 align="center" style="margin:0px;">Welcome to the Tcl Developer Xchange!</h2>
+<blockquote class="homeblurb">
+Join the many thousands of software developers who are already
+more productive with help from the
+<b>Tcl programming language</b> and the
+<b>Tk graphical user interface toolkit</b>.
+</blockquote>
+<p>
+Tcl (Tool Command Language) is a very powerful but easy to learn dynamic
+programming language, suitable for a very wide range of uses, including
+web and desktop applications, networking, administration, testing and
+many more. Open source and business-friendly, Tcl is a mature yet
+evolving language that is truly cross platform, easily deployed and
+highly extensible.
+</p>
+<p>
+Tk is a graphical user interface toolkit that takes developing desktop
+applications to a higher level than conventional approaches. Tk is the
+standard GUI not only for Tcl, but for many other dynamic languages, and
+can produce rich, native applications that run unchanged across Windows,
+Mac OS X, Linux and more.
+</p>
+<div>
+<a style="margin: 10px;" href="http://komodoide.com/tcl/?utm_source=tcl-tk&amp;utm_medium=banner&amp;utm_term=&amp;utm_content=komodo-by-AS-170x124&amp;utm_campaign=tcl-tk-site"><img src="./Tcl Developer Site_files/komodobanner-170x124-tcl-tk.png" border="0" alt="KomodoIDE Tcl debugging, code intel, unit testing + more" title="KomodoIDE Tcl debugging, code intel, unit testing + more" align="right"></a>
+
+<br>
+
+<p class="biglink">
+<a href="https://www.tcl-lang.org/about/">Learn more</a>
+</p>
+<p class="biglink">
+<a href="https://www.tcl-lang.org/software/tcltk/">Get Tcl/Tk</a>
+(<a href="https://www.tcl-lang.org/software/tcltk/8.6.html">8.6</a>)
+(<a href="https://www.tcl-lang.org/software/tcltk/8.7.html">8.7-alpha</a>)
+</p>
+
+<p class="biglink">
+Browse the <a href="http://wiki.tcl-lang.org/">Tcler's Wiki</a>
+</p>
+<p class="biglink">
+Read the <a href="https://www.tcl-lang.org/man/tcl8.6/">reference pages</a>
+and <a href="https://www.tcl-lang.org/doc/">other documentation</a>
+</p>
+
+</div>
+<br clear="all">
+<table cellpadding="5">
+<tbody><tr>
+<td valign="top">
+<p class="homesectionhead">Core Development</p>
+<p class="homesection">
+A wide variety of developers contribute to the open source Tcl and Tk
+core, which is hosted at <a href="https://core.tcl.tk/">core.tcl.tk</a>.
+The <a href="https://www.tcl-lang.org/community/coreteam/">Tcl Core Team (TCT)</a> helps steer
+this development through mechanisms like <a href="https://tip.tcl-lang.org/">Tcl Improvement Proposals (TIP's)</a> and the <a href="http://aspn.activestate.com/ASPN/Mail/Browse/Threaded/tcl-core">core mailing list</a>.
+</p>
+<p class="homesectionreadmore">
+<a href="https://www.tcl-lang.org/community/coreteam/"><b>Read More</b></a> about how the Tcl/Tk core is developed, and how you can help.
+</p>
+</td>
+<td valign="top">
+<p class="homesectionhead">Tcl/Tk Community</p>
+<p class="homesection">
+The vibrant Tcl user community provides a variety of support resources to
+help working with Tcl/Tk. Among others, the <a href="http://wiki.tcl-lang.org/">Tcler's Wiki</a>
+provides a constantly updated set of tips and tricks, while
+<a href="https://groups.google.com/group/comp.lang.tcl">comp.lang.tcl</a> remains the best forum for Tcl/Tk discussions.
+Beyond that we also have IRC, Slack, and Twitter channels.
+</p>
+<p class="homesectionreadmore">
+<a href="https://www.tcl-lang.org/community/"><b>Read More</b></a> about these and other useful community resources.
+</p>
+</td>
+</tr>
+</tbody></table>
+<br clear="all">
+<p align="center" class="footer">
+<small><b>
+This is the main Tcl Developer Xchange site,
+www.tcl-lang.org .
+</b></small>
+&nbsp;&nbsp;
+<a href="https://www.tcl-lang.org/siteinfo.html">About this Site</a> |
+<a href="mailto:webmaster@tcl-lang.org">webmaster@tcl-lang.org</a>
+<br>
+<a href="https://www.tcl-lang.org/">Home</a> |
+<a href="https://www.tcl-lang.org/about/">About Tcl/Tk</a> |
+<a href="https://www.tcl-lang.org/software/tcltk/">Software</a> |
+<a href="https://www.tcl-lang.org/community/coreteam/">Core Development</a> |
+<a href="https://www.tcl-lang.org/community/">Community</a> |
+<a href="https://www.tcl-lang.org/doc/">Documentation</a>
+</p>
+</td></tr></tbody></table>
+</body></html>
